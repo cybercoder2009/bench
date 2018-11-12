@@ -1,0 +1,8 @@
+[package]
+name = "bench"
+version = "0.1.0"
+authors = ["chris <chris@aion.network>"]
+
+[dependencies]
+p2p = { git = "https://github.com/cybercoder2009/p2p" }
+uuid = { version = "0.7", features = ["v4"] }
