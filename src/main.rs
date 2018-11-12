@@ -1,9 +1,8 @@
 extern crate p2p;
-extern crate uuid;
 
 use std::env;
 use std::thread;
-use uuid::Uuid;
+use p2p::util::new_uuid_as_u8_36;
 use p2p::P2p;
 use p2p::node::NodeInfo;
 use p2p::routes::REQ_HANDSHAKE;
@@ -38,28 +37,31 @@ fn main() {
     // netstat -antp | grep 30303 | wc -l
 
     let args: Vec<String> = env::args().collect();
+
+    if args.len() < 3 {
+        return;
+    }
+
     println!("{:?}", args);
-    let ip: String = (&args[1]).parse().unwrap();
-    let max: u64 = (&args[2]).parse().unwrap();
+    let net_id: u32 = (&args[1]).parse().unwrap();
+    let ip: String = (&args[2]).parse().unwrap();
+    let max: u64 = (&args[3]).parse().unwrap();
 
     for _i in 0 .. max {
-        let my_uuid = Uuid::new_v4();
-        let s = my_uuid.to_string();
-        let mut node_id: [u8; 36] = [0x00u8; 36];
-        node_id[0..36].copy_from_slice(&s.as_bytes()[0..36]);
-
         let mut boot_nodes: Vec<NodeInfo> = Vec::new();
         boot_nodes.push(NodeInfo {
             if_seed: true,
-            node_id: String::from("c33d1066-8c7e-496c-9c4e-c89318280274"),
+            node_id: String::from("c88d1066-8c7e-496c-9c4e-c89318280274"),
             ip: String::from("127.0.0.1"),
             port: 30303,
         });
 
+        let node_id = new_uuid_as_u8_36();
+
         let mut p2p = P2p::new(
             false,
             true,
-            256,
+            net_id,
             node_id,
             boot_nodes,
             5,

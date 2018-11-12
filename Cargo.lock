@@ -134,7 +134,7 @@ dependencies = [
 [[package]]
 name = "p2p"
 version = "0.1.0"
-source = "git+https://github.com/cybercoder2009/p2p#bc44d7b0f3777c9d39b2ea47cba19b5075d335af"
+source = "git+https://github.com/cybercoder2009/p2p#2e0422affe3fc0a4df50c9beebf94bece60403b8"
 dependencies = [
  "bytebuffer 0.2.1 (registry+https://github.com/rust-lang/crates.io-index)",
  "hex 0.3.2 (registry+https://github.com/rust-lang/crates.io-index)",
