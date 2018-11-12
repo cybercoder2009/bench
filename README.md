@@ -8,4 +8,5 @@ cargo build --release
 target/release/bench
 
 # run
-bench {remote ip} {max instances}
+bench {net id} {remote ip} {max instances} 
+eg: bench 256 127.0.0.1 100
